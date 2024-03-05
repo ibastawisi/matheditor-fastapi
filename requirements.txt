@@ -1,0 +1,3 @@
+fastapi[all]
+gunicorn
+pix2text
