@@ -9,6 +9,7 @@ p2t = Pix2Text()
 
 origins = [
     "https://matheditor.me",
+    "https://matheditor.vercel.app",
 ]
 
 app.add_middleware(

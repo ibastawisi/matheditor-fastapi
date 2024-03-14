@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn Daemon for Matheditor FastAPI Application
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/matheditor-fastapi
+ExecStart=/home/ubuntu/matheditor-fastapi/venv/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
