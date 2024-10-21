@@ -1,5 +1,4 @@
-from time import time
-from fastapi import FastAPI, Request, UploadFile, __version__
+from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pix2text import Pix2Text, merge_line_texts
@@ -10,6 +9,7 @@ p2t = Pix2Text()
 origins = [
     "https://matheditor.me",
     "https://matheditor.vercel.app",
+    # "http://localhost:3000",
 ]
 
 app.add_middleware(
@@ -41,5 +41,4 @@ async def home():
 @app.post('/pix2text')
 async def pix2text(file: UploadFile):
     outs = p2t.recognize(file.file, resized_shape=608,isolated_sep=('$$', '$$'))
-    only_text = merge_line_texts(outs)
-    return {'generated_text': only_text}
+    return {'generated_text': outs}
